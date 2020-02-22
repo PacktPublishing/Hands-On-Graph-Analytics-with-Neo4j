@@ -1,0 +1,23 @@
+{
+  "head": {
+    "vars": [
+      "country",
+      "countryLabel"
+    ]
+  },
+  "results": {
+    "bindings": [
+      {
+        "country": {
+          "type": "uri",
+          "value": "http://www.wikidata.org/entity/Q34"
+        },
+        "countryLabel": {
+          "xml:lang": "en",
+          "type": "literal",
+          "value": "Sweden"
+        }
+      }
+    ]
+  }
+}

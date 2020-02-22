@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset=utf-8 />
+	<title>Routing</title>
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+	      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+	      crossorigin=""/>
+
+	<!-- Make sure you put this AFTER Leaflet's CSS -->
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+		     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+		crossorigin=""></script>
+
+
+	<script src="https://unpkg.com/neo4j-driver@4.0.1/lib/browser/neo4j-web.min.js" type="text/javascript"></script>
+	<script src="https://cdn.jsdelivr.net/npm/neo4j-driver@4.0.1/lib/browser/neo4j-web.min.js" type="text/javascript"></script>
+
+
+	<script src="wellknown.js" type="text/javascript"></script>
+	<style>
+	 #mapid { height: 1080px; }
+	</style>
+    </head>
+    <body>
+	<header>
+	    <h1>Visualizing paths with Neo4j and JS</h1>
+	</header>
+	<section>
+	    <div id="mapid"></div>
+	</section>
+	<script>
+	 
+	 var driver = neo4j.driver(
+	     'bolt://127.0.0.1:7687',
+	     neo4j.auth.basic('neo4j', '***')
+	 );
+	 var session = driver.session();
+
+	 
+	 var map = L.map('mapid').setView([40.757965, -73.985561], 7);
+	 L.tileLayer(
+	     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+             maxZoom: 19,
+             attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+	 }).addTo(map);
+
+	 
+	 var query = `
+MATCH (startNode:Junction {osmid: { startNodeOsmId }})
+MATCH (endNode:Junction {osmid: { endNodeOsmId }})
+CALL gds.alpha.shortestPath.astar.stream(
+        "road_network",
+        {
+            startNode: startNode, 
+            endNode: endNode, 
+            relationshipWeightProperty: "length",
+            propertyKeyLat: "latitude",
+            propertyKeyLon: "longitude"
+        }
+) YIELD nodeId, cost
+WITH gds.util.asNode(nodeId) as node, cost
+WITH collect(node) as path, collect(cost) as costs
+UNWIND range(0, size(path)-1) AS index
+WITH path[index] AS currentNode, path[index+1] AS nextNode
+MATCH (currentNode)-[r:LINKED_TO]-(nextNode) 
+RETURN r.name, r.geometry as wkt
+	 `;
+
+	 
+         
+         var params = {
+	     "startNodeOsmId": "42428297",
+	     "endNodeOsmId": "42423674",
+         };
+
+         session
+	     .run(query, params)
+	     .then(function(result){
+		 let results = [];
+                 result.records.forEach(function(record) {
+		     let wkt = record.get("wkt");
+		     if (wkt !== null) {
+			 let geo = wellknown.parse(wkt);
+			 console.log(wkt);
+			 results.push(geo);
+		     }
+                 });
+		 return results;		     
+	     }).then(function(result) {
+		 console.log(result);
+		 var myLayer = L.geoJSON(
+		     result,
+		     {
+			 "weight": 5,
+			 "color": "red",
+		     }
+		 ).addTo(map);
+		 map.fitBounds(myLayer.getBounds());
+		 console.log(map);
+	     });
+	 
+	 
+	</script>
+    </body>
+</html>
