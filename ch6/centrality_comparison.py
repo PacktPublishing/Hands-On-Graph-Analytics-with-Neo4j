@@ -2,7 +2,7 @@
 
 Requirements:
 ------------
--  networkx
+- networkx
 - scipy
 - matplotlib
 

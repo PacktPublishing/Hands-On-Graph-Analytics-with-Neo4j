@@ -46,7 +46,7 @@ def page_rank(G, d=0.85, tolerance=0.01, max_iterations=50):
 if __name__ == '__main__':
     G = {
         'A': {'B': 1, 'D': 1},
-        'B': {'A': 1, 'C': 1},
+        'B': {'A': 1},
         'C': {'B': 1},
         'D': {'B': 1},
     }
