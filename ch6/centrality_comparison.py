@@ -1,10 +1,16 @@
-"""A comparison of different centrality algorithms on a given graph.
+"""A comparison of different centrality algorithms
+on a given graph using python networkx.
 
 Requirements:
 ------------
 - networkx
 - scipy
 - matplotlib
+
+
+Results are saved in the `figures` directory:
+
+    mkdir figures
 
 Usage:
 ------------
@@ -32,7 +38,7 @@ f, axs = plt.subplots(2, 2, figsize=(12, 12))
 for k, (name, func) in enumerate(algos.items()):
 
     res = func(G)
-    #print(name, res)
+    # print(name, res)
     res_nodes = list(res.keys())
     res_values = list(res.values())
 
@@ -52,7 +58,8 @@ for k, (name, func) in enumerate(algos.items()):
     ax.axis("off")
     nx.draw_networkx_edges(G, pos, ax=ax)
     nx.draw_networkx_labels(G, pos, font_size=14, ax=ax)
-    #cbar = plt.colorbar(plt_nodes, ticks=[min(res_values), max(res_values)*1.1])
-    #cbar.ax.set_yticklabels(['Low', 'High'])
+    # cbar = plt.colorbar(plt_nodes, ticks=[min(res_values),
+    #                     max(res_values)*1.1])
+    # cbar.ax.set_yticklabels(['Low', 'High'])
 
 f.savefig("figures/graph_centralities.png")

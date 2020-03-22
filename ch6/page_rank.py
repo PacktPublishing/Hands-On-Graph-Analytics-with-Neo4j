@@ -9,11 +9,13 @@ Usage:
 
     python3 page_rank.py
 
+
+NB: this code was developed and tested with python 3.7
 """
 
 
 def page_rank(G, d=0.85, tolerance=0.01, max_iterations=50):
-    """Return the PageRank of the nodes in the graph. 
+    """Returns the PageRank of the nodes in the graph.
 
     :param dict G: the graph
     :param float d: the damping factor
@@ -40,7 +42,10 @@ def page_rank(G, d=0.85, tolerance=0.01, max_iterations=50):
         mean_diff_to_prev_pr = sum([abs(pr[n] - old_pr[n]) for n in G])/N
         if mean_diff_to_prev_pr < tolerance:
             return pr
-    raise Exception(f'PageRank failed after max iteration = {max_iter} (err={err} > tol = {tol})')
+    raise Exception(
+        f'PageRank failed after max iteration = {max_iterations}'
+        f' (err={mean_diff_to_prev_pr} > tol = {tolerance})'
+    )
 
 
 if __name__ == '__main__':
