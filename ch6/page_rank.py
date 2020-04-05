@@ -11,6 +11,8 @@ Usage:
 
 
 NB: this code was developed and tested with python 3.7
+
+Disclaimer: this code is intended for teaching purposes only.
 """
 
 

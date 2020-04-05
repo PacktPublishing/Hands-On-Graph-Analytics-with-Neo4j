@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Neovis.js Simple Example</title>
+	<script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
+        <style type="text/css">
+	 html, body {
+	     font-size: 14pt;
+	     height: 100%;
+	 }
+	 #graph {
+	     width: 100%;
+	     height: 100%;
+	 }
+        </style>
+    </head>
+    <body onload="draw()">
+        <div id="graph"></div>
+    </body>
+    <script type="text/javascript">
+
+     function draw() {
+         let config = {
+             container_id: "graph",
+             server_url: "bolt://localhost:7687",
+             server_user: "neo4j",
+             server_password: "admin",
+             labels: {
+                 "Node": {
+                     "caption": "name",  // label drawn next to each node
+                     "community": "scc",  // defines the node color
+                 }
+             },
+             relationships: {
+                 "LINKED_TO": {
+                     "caption": false,  // disable caption for relationships since they do not carry any relevant information in our case
+                 }
+             },
+             arrows: true,  // display the relationships direction
+             initial_cypher: "MATCH (n:Node)-[r:LINKED_TO]->(m) RETURN *"
+         };
+
+         let viz = new NeoVis.default(config);
+         viz.render();
+     }
+     
+    </script>
+
+</html>
