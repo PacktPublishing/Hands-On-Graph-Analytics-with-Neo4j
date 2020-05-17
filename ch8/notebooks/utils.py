@@ -18,9 +18,13 @@ def create_projected_graph(driver, graph_name, node_projection, relationship_pro
 
     
 def drop_projected_graph(driver, graph_name):
+    """Drop graph after checking existence"""
     with driver.session() as session:
         result = session.run(
-            "CALL gds.graph.drop($graphName)",
+            """CALL gds.graph.exists($graphName) YIELD graphName, exists
+            WHERE exists
+            CALL gds.graph.drop(graphName) YIELD nodeCount, relationshipCount
+            RETURN graphName, nodeCount, relationshipCount""",
             graphName=graph_name,
         )
 
