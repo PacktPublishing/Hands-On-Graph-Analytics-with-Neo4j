@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section>
+    <h2 class="title">Create new repository</h2>
+    {% for field, errors in form.errors.items() %}
+    <div class="alert bg-danger">
+	{{ form[field].label }}: {{ ', '.join(errors) }}
+    </div>
+    {% endfor %}    
+    <form method="POST" action="{{ url_for('create_repository') }}">
+	{{ form.csrf_token }}
+	<div class="form-field">
+	    {{ form.name.label }} {{ form.name }}
+	</div>
+	{{ form.submit }}
+    </form>
+</section>
+
+{% endblock %}

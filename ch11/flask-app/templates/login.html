@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section>
+    <h2 class="title">Login required</h2>
+    <form method="POST" action="/login">
+	{{ form.csrf_token }}
+	<div class="form-field">{{ form.login.label }} {{ form.login }}</div>
+	<div class="form-field">{{ form.password.label }} {{ form.password }}</div>
+	{{ form.submit }}
+    </form>
+</section>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section>
+    <h2>User {{ user.login }}</h2>
+    <p><a href="/logout">Logout</a></p>
+    <h3>List of repositories I contributed to:</h3>
+    <ul>
+	{% for r in contributed_repositories %}
+	<li>{{ r.id }}: {{ r.name }} (on {{ user.contributed_repositories.relationship(r).contribution_date.strftime('%Y-%m-%d %H:%M') }})</li>
+	{% endfor %}
+	<li><a href="{{ url_for('add_contribution') }}">Add a new contribution</a></li>
+    </ul>
+    <h3>List of repositories I own:</h3>
+    <ul>
+	{% for r in owned_repositories %}
+	<li>{{ r.id }}: {{ r.name }}</li>
+	{% endfor %}
+	<li><a href="{{ url_for('create_repository') }}">Create new repository</a></li>
+    </ul>
+</section>
+
+{% endblock %}
