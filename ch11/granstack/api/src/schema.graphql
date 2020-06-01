@@ -1,0 +1,22 @@
+type User {
+  login: String!
+  password: String!
+  email: String
+  birth_date: Date
+  owned_repositories: [Repository] @relation(name: "OWNS", direction: "OUT")
+  contributed_repositories: [Repository] @relation(name: "CONTRIBUTED_TO", direction: "OUT")
+  total_contributions: Int
+    @cypher(
+      statement: "MATCH (this)-[r:CONTRIBUTED_TO]->(:Repository) RETURN COUNT(r)"
+    )
+}
+
+
+type Repository {
+  name: String!
+  owner: User @relation(name: "OWNS", direction: "IN")
+  contributors: [User] @relation(name: "CONTRIBUTED_TO", direction: "IN")
+  nb_contributors: Int @cypher(
+      statement: "MATCH (this)<-[:CONTRIBUTED_TO]->(u:User) RETURN COUNT(DISTINCT u)"
+  )
+}

@@ -1,0 +1,45 @@
+{
+  "name": "grand-stack-starter-api",
+  "version": "0.0.1",
+  "description": "API app for GRANDstack",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "DEBUG=neo4j-graphql-js ./node_modules/.bin/nodemon --watch src --ext js,graphql --exec babel-node  src/index.js",
+    "build": "babel src --out-dir build && shx cp .env build 2>/dev/null || : && shx cp src/schema.graphql build",
+    "now-build": "babel src --out-dir build && shx cp src/schema.graphql build",
+    "start": "npm run build && node build/index.js",
+    "seedDb": "./node_modules/.bin/babel-node src/seed/seed-db.js"
+  },
+  "author": "William Lyon",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-boost": "^0.4.9",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
+    "apollo-server": "^2.13.1",
+    "apollo-server-lambda": "^2.13.1",
+    "csv-parse": "^4.10.1",
+    "dotenv": "^7.0.0",
+    "graphql-tag": "^2.10.1",
+    "neo4j-driver": "^4.0.2",
+    "neo4j-graphql-js": "^2.14.2",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "@babel/runtime-corejs3": "^7.9.2",
+    "babel-plugin-auto-import": "^1.0.5",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "nodemon": "^1.19.1",
+    "shx": "^0.3.2"
+  }
+}
