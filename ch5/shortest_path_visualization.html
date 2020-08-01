@@ -32,8 +32,8 @@
 	<script>
 	 
 	 var driver = neo4j.driver(
-	     'bolt://127.0.0.1:7687',
-	     neo4j.auth.basic('neo4j', '***')
+	     'bolt://127.0.0.1:7687',  // MAKE SURE THESE CONNECTION PARAMETERS ARE CORRECT
+	     neo4j.auth.basic('neo4j', '***')  // SET YOUR USERNAME AND PASSWORD HERE
 	 );
 	 var session = driver.session();
 
@@ -41,14 +41,16 @@
 	 var map = L.map('mapid').setView([40.757965, -73.985561], 7);
 	 L.tileLayer(
 	     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-             maxZoom: 19,
-             attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-	 }).addTo(map);
+		 maxZoom: 19,
+		 attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+	     }).addTo(map);
 
+	 // CAVEAT: MAKE SURE THE PROJECTED GRAPH 'road_network' EXISTS
+	 // refer to the book (Chapter 5) to find the query to create it
 	 
 	 var query = `
-MATCH (startNode:Junction {osmid: { startNodeOsmId }})
-MATCH (endNode:Junction {osmid: { endNodeOsmId }})
+MATCH (startNode:Junction {osmid: $startNodeOsmId })
+MATCH (endNode:Junction {osmid: $endNodeOsmId })
 CALL gds.alpha.shortestPath.astar.stream(
         "road_network",
         {
@@ -68,7 +70,7 @@ RETURN r.name, r.geometry as wkt
 	 `;
 
 	 
-         
+         // You can change start and end nodes here
          var params = {
 	     "startNodeOsmId": "42428297",
 	     "endNodeOsmId": "42423674",
@@ -98,10 +100,13 @@ RETURN r.name, r.geometry as wkt
 		 ).addTo(map);
 		 map.fitBounds(myLayer.getBounds());
 		 console.log(map);
+	     }).then(function() {
+		 // we close the session and the connection to the graph
+		 session.close();
+		 driver.close();
 	     });
 
-	 session.close();
-	 
+
 	</script>
     </body>
 </html>
