@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from neomodel import (
     config,
     StructuredNode, StructuredRel,
@@ -8,7 +8,7 @@ from neomodel import (
 )
 import flask_login
 
-config.DATABASE_URL = 'bolt://neo4j:<YOUR_PASSWORD>@localhost:7687'  # default
+config.DATABASE_URL = 'bolt://neo4j:admin@localhost:7687'  # default
 
 
 class ContributedTo(StructuredRel):
@@ -42,6 +42,7 @@ class Repository(StructuredNode):
 
 if __name__ == '__main__':
     # Creating some toys users
+    print("*** CREATING TEST USERS")
     users = User.get_or_create(
         dict(
             login="me",
@@ -62,9 +63,10 @@ if __name__ == '__main__':
     # fetching existing users
     users = User.nodes.all()
     for u in users:
-        print(u.login, u.email, u.birth_date)
+        print("USER: login =", u.login, ", email =", u.email, ", birth_date =", u.birth_date)
 
     # creating toys repository
+    print("*** CREATING TEST REPOSITORIES AND ADDING CONTRIBUTORS")
     repos = Repository.get_or_create(
         dict(name="hogan"),
         dict(name="flask4j"),
@@ -72,19 +74,40 @@ if __name__ == '__main__':
     )
 
     # connect all users to first repo
-    for u in users:
-        repos[0].contributors.connect(u, {"contribution_date": datetime.now()})
+    # with different contribution dates
+    start_date = datetime(2020, 8, 10, 14)
+    for k, u in enumerate(users):
+        repos[0].contributors.connect(u, {"contribution_date": start_date + timedelta(hours=k, minutes=1)})
 
     repos[0].owner.connect(users[0])
 
     # fetching repos
     repos = Repository.nodes.all()
     for r in repos:
-        print(r.name, r.contributors.all())
+        print("REPOSITORY: name =", r.name, ", contributors =", r.contributors.all())
 
     # find users contributing to "hogan" and having a non null birth_date
+    print("*** MATCHING USERS contributing to Repository named 'hogan', whose birth_date is not null")
     users = Repository.nodes.get(
         name="hogan"
     ).contributors.filter(birth_date__isnull=False)
     for u in users:
-        print(u)
+        print("Marching user:", u)
+
+
+    # find repositories
+    print("*** MATCHING USERS contributing to Repository named 'hogan' before 2020-08-10 at 3pm")
+    users = Repository.nodes.get().contributors.match(
+        contribution_date__gt=datetime(2020, 8, 10, 15, 0)
+    ).all()
+    for u in users:
+        print("Marching user:", u)
+
+"""
+Cypher equivalent of the last query:
+MATCH (u:User)-[r:CONTRIBUTED_TO]->(:Repository {name: "hogan"}) 
+// contribution_date is saved as a floating point timestamp, transform to datetime
+WITH u, DATETIME({epochSeconds: toInteger(r.contribution_date)}) as dt
+WHERE dt >= DATETIME("2020-08-10T15:00:00") 
+RETURN u
+"""
