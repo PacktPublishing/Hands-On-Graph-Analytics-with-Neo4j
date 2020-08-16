@@ -83,6 +83,7 @@ MERGE (u2)-[:OWNS]->(r2)
 
 // WARNING: LONG QUERY
 MATCH (u:User)-[:OWNS]->(r:Repository)
+WHERE u.login = "neo4j"
 CALL apoc.load.jsonParams("https://api.github.com/repos/" + u.login + "/" + r.name + "/readme", {Authorization: "Token " + $token }, null, null, {failOnError: false}) 
 YIELD value 
 CREATE (d:Document {name: value.name, content:value.content, encoding: value.encoding}) 
@@ -108,12 +109,12 @@ CALL ga.nlp.processor.addPipeline({
 })
 
 // Analyze text content
-// WARNING: LONG QUERY
-MATCH (n:Document)
+MATCH (n:Document)-[:DESCRIBES]->(r:Repository)<-[:OWNS]-(:User {login: "neo4j"})
 WHERE size(n.text) > 10
-CALL ga.nlp.annotate({text: n.text, id: id(n), checkLanguage: false, pipeline : "named_entity_extraction"}) 
+CALL ga.nlp.annotate({text: n.text, id: id(n), checkLanguage: false, pipeline : "named_entity_extraction"})
 YIELD result
 MERGE (n)-[:HAS_ANNOTATED_TEXT]->(result)
+
 
 // Analyze text NLP result
 MATCH (n:NER_Person) RETURN n.value
