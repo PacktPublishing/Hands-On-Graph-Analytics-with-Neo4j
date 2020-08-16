@@ -4,7 +4,6 @@ import express from 'express'
 import neo4j from 'neo4j-driver'
 import { makeAugmentedSchema } from 'neo4j-graphql-js'
 import dotenv from 'dotenv'
-import { initializeDatabase } from './initialize'
 
 // set environment variables from .env
 dotenv.config()
@@ -47,27 +46,6 @@ const driver = neo4j.driver(
   }
 )
 
-/*
- * Perform any database initialization steps such as
- * creating constraints or ensuring indexes are online
- *
- */
-const init = async (driver) => {
-  await initializeDatabase(driver)
-}
-
-/*
- * We catch any errors that occur during initialization
- * to handle cases where we still want the API to start
- * regardless, such as running with a read only user.
- * In this case, ensure that any desired initialization steps
- * have occurred
- */
-try {
-  init(driver)
-} catch (error) {
-  console.error(`Failed to property initialize database`, error)
-}
 
 /*
  * Create a new ApolloServer instance, serving the GraphQL schema

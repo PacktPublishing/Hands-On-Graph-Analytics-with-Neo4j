@@ -1,5 +1,12 @@
 # GRANDstack Application - UI with React
 
+Requires:
+
+- Node.js and NPM which can be installed via: https://nodejs.org/en/download/
+- A Neo4j instance running (see 'Configure' section to set your parameters)
+- The GraphQL API running on port 4001
+
+
 ## Quickstart
 
 Install dependencies:
@@ -20,10 +27,8 @@ This will serve the app on `http://localhost:3000`
 
 Configuration is done with environment variables specified in `.env`
 
-Edit `.env` to specify the URI of the GraphQL API. The default is `http://localhost:4000`
-
-*.env*
+Edit `.env` to specify the URI of the GraphQL API. The default is `http://localhost:3000`:
 
 ```
-REACT_APP_GRAPHQL_URI=http://localhost:4000
+REACT_APP_GRAPHQL_URI=http://localhost:3000
 ```

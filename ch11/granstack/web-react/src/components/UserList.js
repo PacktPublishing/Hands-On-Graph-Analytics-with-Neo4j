@@ -9,7 +9,7 @@ const GET_USERS = gql`
     User {
       login
       email
-      totalContributions
+      total_contributions
     }
   }
 `
@@ -23,7 +23,8 @@ function UserList(props) {
   }
 
   if (error !== undefined) {
-    return <p>Error: {error}</p>
+    console.error(error);
+    return <p>Error</p>
   }
 
   return (
