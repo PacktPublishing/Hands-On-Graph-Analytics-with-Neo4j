@@ -6,7 +6,7 @@
 2. Run the following Cypher query:
 
 ```
-LOAD CSV FROM "file:///data_ch8.edgelist" AS row
+LOAD CSV FROM "file:///zkc.graph" AS row
 FIELDTERMINATOR " "
 MERGE (u:Node {id: toInteger(row[0])} )
 MERGE (v:Node {id: toInteger(row[1])} )
