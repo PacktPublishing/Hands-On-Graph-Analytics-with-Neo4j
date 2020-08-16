@@ -90,7 +90,7 @@ RETURN r.name, r.geometry as wkt
                  });
 		 return results;		     
 	     }).then(function(result) {
-		 console.log(result);
+		 // console.log(result);
 		 var myLayer = L.geoJSON(
 		     result,
 		     {
@@ -99,13 +99,11 @@ RETURN r.name, r.geometry as wkt
 		     }
 		 ).addTo(map);
 		 map.fitBounds(myLayer.getBounds());
-		 console.log(map);
 	     }).then(function() {
 		 // we close the session and the connection to the graph
 		 session.close();
 		 driver.close();
 	     });
-
 
 	</script>
     </body>
