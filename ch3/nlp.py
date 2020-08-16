@@ -7,6 +7,12 @@ spacy
 Ussage:
 -------
 
+1. Download models:
+
+    python -m spacy download en_core_web_sm
+
+2. Run this script:
+
     python nlp.py
 
 """
