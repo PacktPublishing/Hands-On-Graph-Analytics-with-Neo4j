@@ -2,4 +2,4 @@ neo4j
 pandas
 scikit-learn
 matplotlib
-seaborn
+seaborn>=0.10.0
