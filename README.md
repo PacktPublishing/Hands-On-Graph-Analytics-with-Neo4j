@@ -41,7 +41,6 @@ With the following software and hardware list you can run all code files present
 
 | Chapter  | Software required                   | OS required                        |
 | -------- | ------------------------------------| -----------------------------------|
-| 1        |-                                    | Windows, Mac OS X, and Linux (Any) |
 | 2        | Neo4j ≥ 3.5, APOC ≥ 3.5.0.11        | Windows, Mac OS X, and Linux (Any) |
 | 3        |Neo4j ≥ 3.5, APOC ≥ 3.5.0.11, GraphAware NLP plugin | Windows, Mac OS X, and Linux (Any) |
 | 4        | Neo4j ≥ 3.5, Graph Data Science plugin ≥ 1.0           | Windows, Mac OS X, and Linux (Any) |
@@ -51,9 +50,31 @@ With the following software and hardware list you can run all code files present
 | 11        | Python, Node.js            | Windows, Mac OS X, and Linux (Any) |
 | 12       | Neo4j ≥ 4.0           | Windows, Mac OS X, and Linux (Any) |
 
+Detailed installation steps (software-wise)
+
+The steps should be listed in a way that it prepares the system environment to be able to test the codes of the book.
+
+Neo4j:
+Download Neo4j Desktop from https://neo4j.com/download/
+Create a new graph with the proper version of Neo4j (Neo4j Desktop will take care of downloading it if not yes installed or your system)
+APOC
+Go to a given graph Management panel in Neo4j Desktop
+Click Plugins
+Install APOC
+GraphAware NLP pluigns:
+Download required jar files from:
+Copy them to the plugins/ directory of your Neo4j graph
+Graph Data Science plugin: installation process similar to APOC, through Neo4j Desktop
+neo4-spatial: download last jar file from https://github.com/neo4j-contrib/spatial/releases and copy it into the plugins directory of your graph.
+Anaconda:
+Download from https://www.anaconda.com/products/individual
+Start anaconda-navigator
+Install Jupyter Notebook (or JupyterLab) application
+Click Launch
+Node.js and npm: https://nodejs.org/en/download/
 
 
-We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](Graphics Bundle Link).
+We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt-cdn.com/downloads/9781839212611_ColorImages.pdf).
 
 ### Related products <Other books you may enjoy>
 * Linux: Powerful Server Administration [[Packt]](https://www.packtpub.com/networking-and-servers/linux-powerful-server-administration?utm_source=github&utm_medium=repository&utm_campaign=9781788293778) [[Amazon]](https://www.amazon.com/dp/1788293770)
