@@ -86,8 +86,7 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 possesses over 7 years' experience as a data scientist, having received her PhD from the Laboratoire de l'Accélérateur Linéaire, Orsay (affiliated to CERN in Geneva). As a Neo4j-certified professional, she uses graph databases on a daily basis and takes full advantage of its features to build efficient machine learning models from this data. In addition, she is also a data science mentor to newcomers to the field. Her domain expertise and deep insights into the perspective of the needs of beginners make her an excellent teacher.
 
 ## Other books by the authors
-* [Mastering Linux Network Administration](https://www.packtpub.com/networking-and-servers/mastering-linux-network-administration?utm_source=github&utm_medium=repository&utm_campaign=9781784399597)
-* [Linux Mint Essentials](https://www.packtpub.com/networking-and-servers/linux-mint-essentials?utm_source=github&utm_medium=repository&utm_campaign=9781782168157)
+* [Exploring Graph Algorithms with Neo4j [Video]](https://www.packtpub.com/product/exploring-graph-algorithms-with-neo4j-video/9781838555580)
 
 ### Suggestions and Feedback
 [Click here](https://docs.google.com/forms/d/e/1FAIpQLSdy7dATC6QmEL81FIUuymZ0Wy9vH1jHkvpY57OiMeKGqib_Ow/viewform) if you have any feedback or suggestions.
