@@ -52,26 +52,28 @@ With the following software and hardware list you can run all code files present
 
 Detailed installation steps (software-wise)
 
-The steps should be listed in a way that it prepares the system environment to be able to test the codes of the book.
+**The steps should be listed in a way that it prepares the system environment to be able to test the codes of the book.**
 
-Neo4j:
-Download Neo4j Desktop from https://neo4j.com/download/
-Create a new graph with the proper version of Neo4j (Neo4j Desktop will take care of downloading it if not yes installed or your system)
-APOC
-Go to a given graph Management panel in Neo4j Desktop
-Click Plugins
-Install APOC
-GraphAware NLP pluigns:
-Download required jar files from:
-Copy them to the plugins/ directory of your Neo4j graph
-Graph Data Science plugin: installation process similar to APOC, through Neo4j Desktop
-neo4-spatial: download last jar file from https://github.com/neo4j-contrib/spatial/releases and copy it into the plugins directory of your graph.
-Anaconda:
-Download from https://www.anaconda.com/products/individual
-Start anaconda-navigator
-Install Jupyter Notebook (or JupyterLab) application
-Click Launch
-Node.js and npm: https://nodejs.org/en/download/
+* Neo4j:
+  Download Neo4j Desktop from https://neo4j.com/download/
+  Create a new graph with the proper version of Neo4j (Neo4j Desktop will take care of downloading it if not yes installed or your system)
+* APOC
+  Go to a given graph Management panel in Neo4j Desktop
+  Click Plugins
+  Install APOC
+* GraphAware NLP pluigns:
+  Download required jar files from:
+  Copy them to the plugins/ directory of your Neo4j graph
+* Graph Data Science plugin: 
+  installation process similar to APOC, through Neo4j Desktop
+  neo4-spatial: download last jar file from https://github.com/neo4j-contrib/spatial/releases and copy it into the plugins directory of your graph.
+* Anaconda:
+  Download from https://www.anaconda.com/products/individual
+  Start anaconda-navigator
+* Install Jupyter Notebook (or JupyterLab) application
+  Click Launch
+* Node.js and npm:
+  https://nodejs.org/en/download/
 
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt-cdn.com/downloads/9781839212611_ColorImages.pdf).
