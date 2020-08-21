@@ -27,14 +27,13 @@ All of the code is organized into folders. For example, Chapter02.
 
 The code will look like the following:
 ```
-if (test expression)
-{
-  Statement upon condition is true
-}
+MERGE (n:Label {id: 1})
+ON CREATE SET n.timestamp_created = timestamp()
+ON MATCH SET n.timestamp_last_update = timestamp()
 ```
 
 **Following is what you need for this book:**
-Copy and paste the Audience section from the EPIC.
+This book is for data analysts, business analysts, graph analysts, and database developers looking to store and process graph data to reveal key data insights. This book will also appeal to data scientists who want to build intelligent graph applications catering to different domains. Some experience with Neo4j is required.
 
 With the following software and hardware list you can run all code files present in the book (Chapter 1-15).
 
@@ -42,43 +41,28 @@ With the following software and hardware list you can run all code files present
 
 | Chapter  | Software required                   | OS required                        |
 | -------- | ------------------------------------| -----------------------------------|
-| 1        | R version 3.3.0                     | Windows, Mac OS X, and Linux (Any) |
-| 2        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 3        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 4        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 5        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 6        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 7        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 8        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 9        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 10        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 11        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 12        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 13        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 14        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
-| 15        | Rstudio Desktop 0.99.903            | Windows, Mac OS X, and Linux (Any) |
+| 1        |-                                    | Windows, Mac OS X, and Linux (Any) |
+| 2        | Neo4j ≥ 3.5, APOC ≥ 3.5.0.11        | Windows, Mac OS X, and Linux (Any) |
+| 3        |Neo4j ≥ 3.5, APOC ≥ 3.5.0.11, GraphAware NLP plugin | Windows, Mac OS X, and Linux (Any) |
+| 4        | Neo4j ≥ 3.5, Graph Data Science plugin ≥ 1.0           | Windows, Mac OS X, and Linux (Any) |
+| 5        | Neo4j ≥ 3.5; < 4, Graph Data Science plugin ≥ 1.0, neo4-spatial            | Windows, Mac OS X, and Linux (Any) |
+| 6 -7     | Neo4j ≥ 3.5, Graph Data Science plugin ≥ 1.0          | Windows, Mac OS X, and Linux (Any) |
+| 8-9-10   | Neo4j ≥ 3.5, Graph Data Science plugin ≥ 1.0, Anaconda            | Windows, Mac OS X, and Linux (Any) |
+| 11        | Python, Node.js            | Windows, Mac OS X, and Linux (Any) |
+| 12       | Neo4j ≥ 4.0           | Windows, Mac OS X, and Linux (Any) |
+
 
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](Graphics Bundle Link).
-
-## Code in Action
-
-Click on the following link to see the Code in Action:
-
-[Placeholder link](www.youtube.com/URL)
 
 ### Related products <Other books you may enjoy>
 * Linux: Powerful Server Administration [[Packt]](https://www.packtpub.com/networking-and-servers/linux-powerful-server-administration?utm_source=github&utm_medium=repository&utm_campaign=9781788293778) [[Amazon]](https://www.amazon.com/dp/1788293770)
 
 * Linux Device Drivers Development [[Packt]](https://www.packtpub.com/networking-and-servers/linux-device-drivers-development?utm_source=github&utm_medium=repository&utm_campaign=9781785280009) [[Amazon]](https://www.amazon.com/dp/1788293770)
 
-## Get to Know the Author(s)
-**Author Name**
-Bio
-
-**Author Name**
-Bio
-
+## Get to Know the Author
+**Estelle Scifo**
+possesses over 7 years' experience as a data scientist, having received her PhD from the Laboratoire de l'Accélérateur Linéaire, Orsay (affiliated to CERN in Geneva). As a Neo4j-certified professional, she uses graph databases on a daily basis and takes full advantage of its features to build efficient machine learning models from this data. In addition, she is also a data science mentor to newcomers to the field. Her domain expertise and deep insights into the perspective of the needs of beginners make her an excellent teacher.
 
 ## Other books by the authors
 * [Mastering Linux Network Administration](https://www.packtpub.com/networking-and-servers/mastering-linux-network-administration?utm_source=github&utm_medium=repository&utm_campaign=9781784399597)
