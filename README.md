@@ -26,10 +26,12 @@ Chapter 2
 Page no:56 
 
 It looks like:
+
 LOAD CSV FROM 'path/to/file.csv' AS row
 CREATE (:Node {name: row[1]
 
 It should look like: 
+
 LOAD CSV FROM 'path/to/file.csv' AS row
 CREATE (:Node {name: row[1] })
 
