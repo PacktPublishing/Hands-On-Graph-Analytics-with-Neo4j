@@ -35,6 +35,16 @@ It should look like:
 LOAD CSV FROM 'path/to/file.csv' AS row
 CREATE (:Node {name: row[1] })
 
+Page no: 348
+
+It looks like:
+
+its relationship to u and v is more important and the edge between u and v is more probable:
+
+It should look like: 
+
+its relationship to u and v is more important and the edge between u and v is more probable.
+
 ## Instructions and Navigations
 All of the code is organized into folders. For example, Chapter02.
 
