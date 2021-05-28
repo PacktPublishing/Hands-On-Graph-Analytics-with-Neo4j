@@ -45,6 +45,15 @@ It should look like:
 
 its relationship to u and v is more important and the edge between u and v is more probable.
 
+It looks like:
+
+Therefore, nodes u and v on the left-hand side are more likely to accept new connections:
+
+It should look like: 
+
+Therefore, nodes u and v on the left-hand side are more likely to accept new connections.
+
+
 ## Instructions and Navigations
 All of the code is organized into folders. For example, Chapter02.
 
