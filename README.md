@@ -53,6 +53,21 @@ It should look like:
 
 Therefore, nodes u and v on the left-hand side are more likely to accept new connections.
 
+Chapter 3 PDF page no: 90
+
+It looks like:
+
+SELECT ?country 
+WHERE { 
+   wd:Q2211 wdt:P17 ?country'
+   
+It should look like: 
+
+SELECT ?country
+WHERE {
+wd:Q2211 wdt:P17 ?country .
+}
+
 
 ## Instructions and Navigations
 All of the code is organized into folders. For example, Chapter02.
